@@ -1,0 +1,68 @@
+<mat-toolbar color="primary">
+  <h1>Sistema de Empréstimo de Livros</h1>
+  <span class="spacer"></span>
+  <button mat-mini-fab matTooltip="Adicionar Livro" color="accent" aria-label="Adicionar Livro" (click)="criar()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="table-section">
+  <h1>Livros</h1>
+  <table mat-table [dataSource]="livros" class="mat-elevation-z10">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> #</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef> Título</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.titulo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="autor">
+      <th mat-header-cell *matHeaderCellDef> Autor</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.autor }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="emprestado">
+      <th mat-header-cell *matHeaderCellDef> Emprestado</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.emprestado ? 'SIM' : 'NÃO' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataEmprestimo">
+      <th mat-header-cell *matHeaderCellDef> Data Empréstimo</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.dataEmprestimo | date: 'dd/MM/yyyy' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataDevolucao">
+      <th mat-header-cell *matHeaderCellDef> Data Devolução</th>
+      <td mat-cell *matCellDef="let livro"> {{ livro.dataDevolucao | date: 'dd/MM/yyyy' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações</th>
+      <td mat-cell *matCellDef="let livro">
+        <button *ngIf="!livro.emprestado" mat-icon-button matTooltip="Emprestar Livro" color="accent"
+                aria-label="Emprestar Livro" (click)="emprestar(livro)">
+          <mat-icon>handshake</mat-icon>
+        </button>
+        <button *ngIf="livro.emprestado" mat-icon-button matTooltip="Devolver Livro" color="accent"
+                aria-label="Devolver Livro" (click)="devolver(livro)">
+          <mat-icon>handshake</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Editar Livro" color="accent" aria-label="Editar Livro"
+                (click)="edit(livro)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Deletar Livro" color="accent" aria-label="Deletar Livro"
+                (click)="delete(livro)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Novo Livro</h1>
+<div mat-dialog-content class="dialog-content">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="data.titulo">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Autor</mat-label>
+    <input matInput [(ngModel)]="data.autor">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+</div>

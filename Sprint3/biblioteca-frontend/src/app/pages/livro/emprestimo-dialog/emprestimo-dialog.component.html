@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Confirmar Empréstimo</h1>
+<div mat-dialog-content>
+  <p>Você deseja realmente emprestar o livro <strong>{{ data.titulo }}</strong>?</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="primary" [mat-dialog-close]="true">Confirmar</button>
+</div>
